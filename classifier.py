@@ -1,12 +1,34 @@
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import MultinomialNB, GaussianNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 
+class Densifier:
+    def fit(self, X, y):
+        return self
+
+    def transform(self, X):
+        return X.toarray()
+
+class Unbiaser:
+    def fit(self, X, y):
+        return self
+
+    def transform(self, X):
+        for i in range(X.shape[0]):
+            try:
+                X[i] = X[i].replace('Trump', 'he')
+            except:
+                continue
+        return X
+
+
 class TrumpClassifier:
     model = text_clf = Pipeline([('vect', CountVectorizer()),
                                  ('tfidf', TfidfTransformer()),
-                                 ('clf', MultinomialNB())
+                                 #('dense', Densifier()),
+                                 ('unbiaser', Unbiaser()),
+                                 ('bayes', MultinomialNB(alpha=0.2))
                                 ])
 
     classes = {0 : 'positive', 1 : 'negative', 2 : 'neutral'}

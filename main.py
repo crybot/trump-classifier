@@ -48,8 +48,8 @@ def main():
 
     neut, pos, neg = get_reviews('reviews.json')
 
-    X = np.hstack([pos, neg])
-    y = np.hstack([np.zeros(len(pos)), np.ones(len(neg))])
+    X = np.hstack([pos, neg, neut])
+    y = np.hstack([np.zeros(len(pos)), np.ones(len(neg)), np.ones(len(neut))+1])
     classes = {0 : 'positive', 1 : 'negative', 2 : 'neutral'}
 
     X_train, y_train, X_test, y_test = split_data(X, y)
@@ -59,6 +59,10 @@ def main():
     trump.train(X_train, y_train)
 
     print("SCORE ON TEST SET: %f" % trump.score(X_test, y_test))
+    
+    while True:
+        sentence = input()
+        print("\t%s" % trump.predict([sentence]))
 
     #predictions = trump.predict(test_set)
     #for sentence, prediction in zip(test_set, predictions):
