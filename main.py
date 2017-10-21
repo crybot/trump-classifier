@@ -5,26 +5,12 @@ import numpy.random as npr
 import Stemmer
 from classifier import TrumpClassifier
 
-def stem(line, stemmer, stop_words):
-    words = [stemmer.stemWord(w) for w in line.split() if w not in stop_words]
-    return ' '.join(words)
-
-def process_input(data):
-    stop_words = string.punctuation
-    stemmer = Stemmer.Stemmer('english')
-    data = list(map(lambda line: stem(line, stemmer, stop_words), data))
-    for punctuation in string.punctuation:
-        data = [line.replace(punctuation, '') for line in data]
-    return data
-
-
 def get_reviews(path):
     data = pd.read_json(path, lines=True)
-    data.reviewText = data.reviewText.str.lower()
 
-    positive = process_input(data[data.overall >= 5].reviewText.values)
-    neutral = process_input(data[data.overall == 3].reviewText.values)
-    negative = process_input(data[data.overall <= 1].reviewText.values)
+    positive = data[data.overall >= 5].reviewText.values
+    neutral = data[data.overall == 3].reviewText.values
+    negative = data[data.overall <= 1].reviewText.values
 
     return neutral[0:1000], positive[0:1000], negative[0:1000]
 
@@ -61,6 +47,7 @@ def main():
     print("SCORE ON TEST SET: %f" % trump.score(X_test, y_test))
     
     while True:
+        print("Enter a sentece to be evaluated...")
         sentence = input()
         print("\t%s" % trump.predict([sentence]))
 
