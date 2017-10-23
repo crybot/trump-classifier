@@ -1,4 +1,4 @@
-from sklearn.naive_bayes import MultinomialNB, GaussianNB
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
@@ -63,7 +63,9 @@ class TrumpClassifier:
         self.model = self.model.fit(X, y)
         return self
 
-    def predict(self, X):
+    def predict(self, X, numeric=False):
+        if numeric:
+            return self.model.predict(X)
         return [self.classes[h] for h in self.model.predict(X)]
 
     def score(self, X, y):

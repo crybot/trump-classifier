@@ -1,9 +1,8 @@
-import string
 import pandas as pd
 import numpy as np
 import numpy.random as npr
-import Stemmer
 from classifier import TrumpClassifier
+import matplotlib.pyplot as plt
 
 def get_reviews(path):
     data = pd.read_json(path, lines=True)
@@ -44,16 +43,22 @@ def main():
     trump.set_classes(classes)
     trump.train(X_train, y_train)
 
+    data = pd.read_json('./tweets.json')
+    predictions = trump.predict(data.text, numeric=False)
+    data['sentiment'] = predictions
+    print(data)
+
+    plt.hist(predictions[predictions == 0], bins=5, color='green', edgecolor='black')
+    plt.hist(predictions[predictions == 1], bins=5, color='red', edgecolor='black')
+    plt.hist(predictions[predictions == 2], bins=5, color='yellow', edgecolor='black')
+    plt.show()
+
     print("SCORE ON TEST SET: %f" % trump.score(X_test, y_test))
     
     while True:
         print("Enter a sentece to be evaluated...")
         sentence = input()
         print("\t%s" % trump.predict([sentence]))
-
-    #predictions = trump.predict(test_set)
-    #for sentence, prediction in zip(test_set, predictions):
-        #print(sentence + " : " + str(prediction))
 
 if __name__ == '__main__':
     main()
