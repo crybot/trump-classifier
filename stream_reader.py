@@ -7,7 +7,8 @@ import json
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
-
+from http.client import IncompleteRead
+  
 from classifier import TrumpClassifier
 from listener import TweetListener
 
@@ -54,7 +55,10 @@ def main():
 #on each iteration the previously collected tweets are erased, in order to keep
 #only the newest tweets. After the first iteration it is guaranteed that the output file
 #contains #max_tweets.
-        streamer.collect(['realDonaldTrump'], max_tweets=5000)
+        try:
+            streamer.collect(['realDonaldTrump'], max_tweets=1000)
+        except IncompleteRead:
+            continue
 
 
 if __name__ == '__main__':
