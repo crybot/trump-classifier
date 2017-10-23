@@ -3,7 +3,7 @@ import pandas as pd
 from tweepy.streaming import StreamListener
 
 class TweetListener(StreamListener):
-    tweets_att = ['text', 'coordinates', 'created_at', 'in_reply_to_status_id', 'is_quote_status']
+    tweets_att = ['text', 'created_at', 'in_reply_to_status_id', 'is_quote_status']
     user_att = ['id', 'location']
 
     def __init__(self, output, classifier, max_tweets, api=None):

@@ -8,15 +8,16 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 from http.client import IncompleteRead
+from urllib3.exceptions import ProtocolError 
   
 from classifier import TrumpClassifier
 from listener import TweetListener
 
 #Twitter API credentials
-consumer_key = ""
-consumer_secret = ""
-access_key = ""
-access_secret = ""
+consumer_key = "ljZdWzEO4bR2UXYyVgNZNMEs3"
+consumer_secret = "6r6FCAqtmWlJWRBBtBhFiVJRknM90nUIuoFIz74KWV0kOmul20"
+access_key = "3126562617-W8mOD6a7xUL4tKAISd6TTmzhbn4W8f1Jy1u0xTD"
+access_secret = "q0ro5B5uOt4ffnlsN6JU0sR6AJMZVYqT81P0QO7M3ypJt"
 
 def get_reviews(path):
     data = pd.read_json(path, lines=True)
@@ -56,8 +57,9 @@ def main():
 #only the newest tweets. After the first iteration it is guaranteed that the output file
 #contains #max_tweets.
         try:
-            streamer.collect(['realDonaldTrump'], max_tweets=1000)
-        except IncompleteRead:
+            streamer.collect(['realDonaldTrump'], max_tweets=10000)
+        except (IncompleteRead, ProtocolError):
+            print('Connection problem, starting over...')
             continue
 
 
