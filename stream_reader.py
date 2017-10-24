@@ -57,7 +57,7 @@ def main():
 #only the newest tweets. After the first iteration it is guaranteed that the output file
 #contains #max_tweets.
         try:
-            streamer.collect(['realDonaldTrump'], max_tweets=10000)
+            streamer.collect(['realDonaldTrump'], max_tweets=1000)
         except (IncompleteRead, ProtocolError):
             print('Connection problem, starting over...')
             continue
