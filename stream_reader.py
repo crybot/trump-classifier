@@ -42,7 +42,7 @@ class TrumpStreamer():
         self.__trumpifier.train(X_train, y_train)
 
     def collect(self, keywords, max_tweets=10000):
-        listener = TweetListener('./tweets.json', self.__trumpifier, max_tweets)
+        listener = TweetListener('./tweets.csv', './coordinates.csv', self.__trumpifier, max_tweets)
         stream = Stream(self.__auth, listener)
         stream.filter(track=keywords)
 
