@@ -1,0 +1,85 @@
+*{
+  font-family: "Neue Helvetica";
+  margin:20px;
+  padding:5px;
+
+}
+.container{
+   margin: auto;
+   width: 90%;
+   padding: 10px;
+}
+.jumbotron{
+  height:50%;
+  margin: 5px;
+  background:  #00aced;
+}
+h2{
+  text-align: center;
+}
+p{
+  font-size: 0.85em;
+}
+svg{
+  background: #fff;
+  display: block;
+    margin: auto;
+}
+.country{
+fill:#d6f5d6;
+stroke:#333;
+fill-opacity:0.5;
+stroke-width:0.5;
+
+}
+.city-label{
+  font-size: 10px;
+}
+#map{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+
+}
+#map-us{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+
+}
+.state{
+  /*fill:#f68838;*/
+  stroke:#333;
+  fill-opacity:0.5;
+  stroke-width:0.5;
+}
+.county{
+fill:#e3e3e3;
+stroke:#fff;
+fill-opacity: 0.5;
+stroke-width:0.5;
+
+}
+.selected{
+  fill:lightGreen;
+}
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.title {
+    fill: teal;
+    font-weight: bold;
+}
+.label-text{
+  fill: yellow;
+  font-weight: 900;
+  font-size:8em;
+  stroke:lightGreen;
+  /*stroke-width:1px;*/
+}
