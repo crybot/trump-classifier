@@ -46,21 +46,44 @@ Once the page has loaded (it may take a while depending on the amount of data po
 ``` diff
 ```
 ### What People Think of Trump
-Incredibly enough (perhaps not), we showed that 32% of the population do have a positive attitude towards Donald J. Trump:
-> 47% of the population expresses negative feelings about his Twitter activity, whereas 21 % of the population is neutral. results are also in line with the current approval rate of *Donald J. Trump* which is 36 % ([Presidential approval ratings](http://news.gallup.com/poll/203198/presidential-approval-ratings-donald-trump.aspx))
+Incredibly enough (perhaps not), we showed that:
+> 32% of the population do have a positive attitude towards *Donald J. Trump*; 47% of the population expresses negative feelings about his Twitter activity, whereas 21 % of the population is neutral. Our results are also in line with the current approval rate of *Trump*, which is 36 % ([Presidential approval ratings](http://news.gallup.com/poll/203198/presidential-approval-ratings-donald-trump.aspx))
 
-### Is it realistic?
+### Is It Realistic?
 As mentioned above, the current polls indicates that Trump's approval rating (as 27/10/2017) is around 36% which is really close to our Sentimental Analyzer prediction.
+
+### About Geolocalization
+While trying to extract geographic information out of Twitter's data, we realized that only about 2% of the tweets collected included non-null coordinates. This would be worth investigating deeper: People are so smart that whenever they can, they turn off geolocalization, or they just don't know how to turn it on?
+Argue.
 
 ![Trump's approval ratings](https://image.ibb.co/fa4FMR/Screenshot_8.png)
 
-
 ## Additional Notes
 ``` diff
+Just some technical stuff, feel free to skip it.
 ```
-### Built With
 
-* Python: data collecting and machine learning
+### Application Architecture
+[Architecture](https://image.ibb.co/h4XzFm/architecture.png)
+
+### Data Collection
+The application uses Tweepy to connect to Twitter's data stream and collect users posts in real time.
+Tweets are then saved periodically into two different csv formatted files to allow for faster retrivial while visualizing them: one file contains all the tweets collected so far, while the other includes only the ones with non-null geographic coordinates.
+
+### Text Processing
+Before feeding the data to our classifier, the application preprocesses the data following these steps:
+* The text gets stemmed, including stopwords removal and lowercase transformation
+* The resulting sentence gets then "unbiased" by replacing occurrences of the word 'Trump' with a pronoun (since the training set did not include such words. More on this later)
+* The sentence gets finally vectorized using a tf-idf transformer and fed to the classifier.
+
+### Sentiment Analysis
+Our classifier is implemented as a Multinomial Naive Bayes Classifier. It has been trained with Amazon's Instant video reviews to determine the class of a certain sentence among 'positive', 'neutral' or 'negative'.
+
+### Data Visualization
+For our visualizer we used D3.js and wrote a dynamic web page to visualize in real time the analyzed tweets.
+
+### Built With
+* Python: data collection and machine learning
 * Javascript: data visualization
 
 ### Versioning
