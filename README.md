@@ -1,6 +1,7 @@
 
 # <img src="http://vectorlogo4u.com/wp-content/uploads/2016/06/twitter-icon-vector.png" width="180">#Trump Classifier
 
+## What Am I Looking At?
 *Donald J. Trump* is one of the most tweeting presidents in American history. 
 According to the **INDEPENDENT**:
 > Mr Trump has sent almost *500* tweets from his personal **@realDonaldTrump** account, 
@@ -24,7 +25,11 @@ Once the page has loaded (it may take a while depending on the amount of data po
 
 ![USA Map](https://media.giphy.com/media/l1J9GI4It9cmqS3y8/giphy.gif)
 * Bar Chart (Fun Fact: The original idea was to use Trump's faces to plot sentiments, but it may have been of bad taste to someone)
+ 
+![Bar Chart](https://media.giphy.com/media/3ov9jY32DrHyIkghTG/giphy.gif)
 * Pie Chart
+
+![Pie Chart](https://media.giphy.com/media/3o7aDeAXNlvwb58n1S/giphy.gif)
 
 
 ## Some Results
