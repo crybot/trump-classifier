@@ -18,7 +18,13 @@ For the joy of lazy people, there's no installing going on. Just visit the appli
 [Click Me :D](http://washeramedia.com/)
 
 ## Features
-Once the page has loaded (it may take a while depending on the amount of data points to be processed), you may choose between 4 different kinds of charts.
+Once the page has loaded (it may take a while depending on the amount of data points to be processed), you may choose between 4 different kinds of charts:
+
+* USA/World Wide Chart
+
+![USA Map](https://media.giphy.com/media/l1J9GI4It9cmqS3y8/giphy.gif)
+* Bar Chart (Fun Fact: The original idea was to use Trump's faces to plot sentiments, but it may have been of bad taste to someone)
+* Pie Chart
 
 
 ## Some Results
