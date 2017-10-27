@@ -3,8 +3,6 @@ import pandas as pd
 from tweepy.streaming import StreamListener
 import os
 
-
-
 class TweetListener(StreamListener):
     #tweets_att = ['text', 'created_at', 'in_reply_to_status_id_str', 'is_quote_status']
     tweets_att = ['text']
