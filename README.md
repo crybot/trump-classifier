@@ -64,7 +64,7 @@ Just some technical stuff, feel free to skip it.
 ```
 
 ### Application Architecture
-[Architecture](https://image.ibb.co/h4XzFm/architecture.png)
+![Architecture](https://image.ibb.co/h4XzFm/architecture.png)
 
 ### Data Collection
 The application uses Tweepy to connect to Twitter's data stream and collect users posts in real time.
