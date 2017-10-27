@@ -1,6 +1,5 @@
 
 # <img src="http://vectorlogo4u.com/wp-content/uploads/2016/06/twitter-icon-vector.png" width="180">#Trump Classifier
-
 ## What Am I Looking At?
 *Donald J. Trump* is one of the most tweeting presidents in American history. 
 According to the **INDEPENDENT**:
@@ -43,6 +42,9 @@ Explain how to run the automated tests for this system
 
 ### Is it realistic?
 ...
+
+Our study showed that 32% of the population do have a positive attitude towards Donald J. Trump, 47% of the population are against him , whereas 21 % of the population are neutral towards him. Our sentiment analysis result is also in line with the current approval rate of Donald J. Trump which is 37 %. 
+
 
 ...
 
