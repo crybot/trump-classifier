@@ -42,6 +42,7 @@ var path = d3.geoPath()
              .projection(projection);
 function ready(error, data,coordinates){
   var states = topojson.feature(data,data.objects.states).features;
+  console.log(states);
     var positive = 0
     var negative = 0;
     var neutral = 0;
@@ -72,7 +73,10 @@ totalSentiment[2] = neutral
       .append("path")
       .attr("class","state")
       .attr("d",path)
-      .attr("fill","#d6f5d6")
+      .attr("fill",function(d) {
+        return "#d6f5d6";
+
+      })
       .on("mouseover",function(d){
           d3.select(this).classed("selected",true)
       })

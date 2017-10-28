@@ -23,9 +23,12 @@ var svg = mapDiv.append("svg")
             .append("g")
             .attr("transform","translate("+margin.left + ","+margin.top+")");
 
+
+
 d3.queue()
   .defer(d3.json, "world-countries.json")
-  .defer(d3.csv,"capitals.csv")
+  .defer(d3.csv,"countries.csv")
+  // .defer(d3.csv,"capitals.csv")
   .defer(d3.csv,"coordinates.csv")
   .await(ready);
 var projection = d3.geoMercator()
@@ -35,8 +38,8 @@ var projection = d3.geoMercator()
 var path = d3.geoPath()
              .projection(projection);
 
-function ready(error, data,capitals,coordinates){
-
+function ready(error, data,countriesName,coordinates){
+  console.log(countriesName);
   var positive = 0
   var negative = 0;
   var neutral = 0;
@@ -66,6 +69,10 @@ totalSentiment[2] = neutral
 
 var countries = topojson.feature(data, data.objects.countries1).features;
 
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 svg.selectAll(".country")
 .data(countries)
 .enter().append("path")
@@ -81,42 +88,43 @@ svg.selectAll(".country")
 })
 
 svg.selectAll(".city-circle")
-    .data(capitals)
+    .data(countriesName)
     .enter()
     .append("circle")
     .attr("r",2.5)
     .attr("class","city-circle")
     .attr("cx",function(d){
-            var coords = projection([d.long,d.lat])
+      console.log(d.Country)
+      console.log(d.Latitude)
+            var coords = projection([d.Longitude,d.Latitude])
             return coords[0]
 
     })
     .attr("cy",function(d){
-            var coords = projection([d.long,d.lat])
+              var coords = projection([d.Longitude,d.Latitude])
             return coords[1]
     })
-    .attr("fill","white")
+    .attr("fill","black")
+    .attr("fill-opacity",0.1)
+    .on("mouseover",function(d){
+        d3.select(this).classed("selected",true);
 
-svg.selectAll('.city-label')
-    .data(capitals)
-    .enter()
-    .append("text")
-    .attr("x",function(d){
-            var coords = projection([d.long,d.lat])
-            return coords[0];
-
-    })
-    .attr("y",function(d){
-            var coords = projection([d.long,d.lat])
-            return coords[1];
+        div.transition()
+              .duration(10)
+              .style("opacity", .9);
+          div.html("<h4>" +d.Country+ "</h4>")
+              .style("left", (d3.event.pageX-28) + "px")
+              .style("top", (d3.event.pageY-28) + "px");
 
     })
-    .attr("dx",5)
-    .attr("dy",5)
-    .attr("class","city-label")
-    .text(function(d){
-            return d.name;
+    .on("mouseout",function(d){
+        d3.select(this).classed("selected",false);
+        div.transition()
+                .duration(500)
+                .style("opacity", 0);
+
     })
+
 
     svg.selectAll(".tweet-circle")
       .data(coordinates)

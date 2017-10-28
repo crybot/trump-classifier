@@ -1,8 +1,8 @@
 *{
   font-family: "Neue Helvetica";
-  margin:20px;
+  margin:2px;
   padding:5px;
-
+  margin-left:20px;
 }
 .container{
    margin: auto;
@@ -13,6 +13,7 @@
   height:50%;
   margin: 5px;
   background:  #00aced;
+
 }
 h2{
   text-align: center;
