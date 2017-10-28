@@ -52,11 +52,12 @@ Incredibly enough (perhaps not), we showed that:
 ### Is It Realistic?
 As mentioned above, the current polls indicates that Trump's approval rating (as 27/10/2017) is around 36% which is really close to our Sentimental Analyzer prediction.
 
+![Trump's approval ratings](https://image.ibb.co/fa4FMR/Screenshot_8.png)
+
+
 ### About Geolocalization
 While trying to extract geographic information out of Twitter's data, we realized that only about 2% of the tweets collected included non-null coordinates. This would be worth investigating deeper: People are so smart that whenever they can, they turn off geolocalization, or they just don't know how to turn it on?
 Argue.
-
-![Trump's approval ratings](https://image.ibb.co/fa4FMR/Screenshot_8.png)
 
 ## Additional Notes
 ``` diff
